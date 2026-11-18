@@ -12,6 +12,7 @@
 // executable_sha256 as it is.
 
 #include "profile.hpp"
+#include "season1_import.hpp"
 
 #include "psprecomp/elf32.hpp"
 
@@ -24,6 +25,25 @@ namespace {
 // memory stick also live under ms0:/PSP/GAME/NPJG00025/.
 constexpr SaveFolder kSaveFolders[] = {
     {"NPJG00025", "Game data", true},
+};
+
+// Season 2 plays Season 1's cases as downloaded episodes. They are built at
+// setup from the player's Season 1 disc (season1_import.hpp), in whatever
+// edition it is; nothing of either game is shipped.
+constexpr const char *kSeason1DiscIds[] = {"UCJS10097"};
+constexpr AddOnDisc kAddOnDiscs[] = {
+    {"season1", "Trick x Logic Season 1",
+     "Season 1's four cases join Season 2's shelf, built from your Season 1 disc in its own font.", kSeason1DiscIds,
+     tricklogic2::build_season1},
+};
+
+constexpr ProfileText kText[] = {
+    {"zh-Hans", "Season 1's four cases join Season 2's shelf, built from your Season 1 disc in its own font.",
+     "从你的一代光盘生成一代的四个案件，加入二代的书架，文字使用一代自己的字体。"},
+    {"zh-Hans", "Reading the fonts", "正在读取字库"},
+    {"zh-Hans", "Merging the fonts", "正在合并字库"},
+    {"zh-Hans", "Checking Season 2's common.bin", "正在校验二代的 common.bin"},
+    {"zh-Hans", "Converting the cases", "正在转换案件"},
 };
 
 // The keyboard for a text adventure: one hand on the bottom row, as in most
@@ -88,6 +108,9 @@ const GameProfile &game() {
         // is the system libraries in PSP_GAME/USRDIR/module (libfont,
         // libpsmfplayer, psmf), which the framework implements as HLE.
         .overlay_slots = {},
+
+        .add_on_discs = kAddOnDiscs,
+        .text = kText,
 
         .save_game_name = "NPJG00025",
         .save_folders = kSaveFolders,

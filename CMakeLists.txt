@@ -7,4 +7,4 @@ add_subdirectory(portablekit)
 
 portablekit_add_game(TrickLogic2Native
     PROFILE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
-    SOURCES host/tricklogic2_profile.cpp)
+    SOURCES host/tricklogic2_profile.cpp host/season1_import.cpp)
