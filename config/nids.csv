@@ -1,0 +1,30 @@
+# NIDs Trick x Logic Season 2 imports that PortableKit's own table does not
+# name. Names from PPSSPP's Core/HLE tables. Only scePsmfPlayerSetPsmfCB is
+# implemented by the framework (as an alias of scePsmfPlayerSetPsmf); the
+# rest are named so the logging stubs say what they are.
+scePsmfPlayer,0x58B83577,scePsmfPlayerSetPsmfCB
+SysMemUserForUser,0x91DE343C,sceKernelSetCompiledSdkVersion500_505
+sceAtrac3plus,0x9CD7DE03,sceAtracSetMOutHalfwayBufferAndGetID
+sceRtc,0x27C4594C,sceRtcGetTime_t
+sceHttp,0x03D9526F,sceHttpSetResolveRetry
+sceHttp,0x0809C831,sceHttpEnableRedirect
+sceHttp,0x47940436,sceHttpSetResolveTimeOut
+sceHttp,0xB3FAF831,sceHttpsDisableOption
+sceHttp,0xBAC31BF1,sceHttpsEnableOption
+sceHttp,0xD081EC8F,sceHttpGetNetworkErrno
+sceParseHttp,0xAD7BFDEF,sceParseHttpResponseHeader
+sceNp,0x37E1E274,sceNpTerm
+sceNp,0x4B5C71C8,sceNpGetOnlineId
+sceNp,0x857B47D3,sceNpInit
+sceNp,0xBB069A87,sceNpGetContentRatingFlag
+sceNpAuth,0x3F1C1F70,sceNpAuthGetTicket
+sceNpAuth,0x4EC1F667,sceNpAuthTerm
+sceNpAuth,0xA1DE86F8,sceNpAuthInit
+sceNpAuth,0xCD86A656,sceNpAuthCreateStartRequest
+sceNpAuth,0xD99455DD,sceNpAuthAbortRequest
+sceNpService,0x00ACFAC3,sceNpServiceTerm
+sceNpService,0x0F8F5821,sceNpServiceInit
+sceUtility,0x16D02AF0,sceUtilityNpSigninInitStart
+sceUtility,0x86ABDB1B,sceUtilityNpSigninGetStatus
+sceUtility,0xE19C97D6,sceUtilityNpSigninShutdownStart
+sceUtility,0xF3FBC572,sceUtilityNpSigninUpdate
