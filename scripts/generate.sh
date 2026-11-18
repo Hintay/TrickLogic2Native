@@ -42,10 +42,9 @@ mkdir -p "$repo_dir/analysis" "$repo_dir/generated"
 # .data: 19 functions at 0x089167F4-0x08918AAC (end exclusive), with their
 # entry table at 0x08918AAC-0x08918AF8. The startup code at 0x088EAD3C walks
 # that table (loop at 0x088EAC60) before main; the functions build global
-# objects and register their destructors through 0x088EAC3C. Whether the
-# original executable had them in .data too, or the translation's rebuilt ELF
-# merged them there, is not known (BOOT.BIN on this disc is all zeroes). The
-# analyser only takes .text as code, so the range is named here. Without it
+# objects and register their destructors through 0x088EAC3C. The Japanese
+# release's executable has them in the same place: the translation changed
+# only data. The analyser only takes .text as code, so the range is named here. Without it
 # the corpus stops at 0x089167F4 under PSPRECOMP_NO_INTERPRETER=1.
 "$build_dir/portablekit/psp_recomp" "$elf" --auto "$repo_dir/generated" \
     --code 0x089167F4-0x08918AAC
