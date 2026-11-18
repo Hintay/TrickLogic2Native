@@ -1,10 +1,11 @@
 # Nothing derived from the game's own files belongs in this repository.
-/iso/
 /game/
 /generated/
 /overlays/
 /analysis/
-/progress/
-/out/
-/out-*.log
-/out-shots/
+
+# Build folders.
+/out*/
+/build*/
+
+.DS_Store
