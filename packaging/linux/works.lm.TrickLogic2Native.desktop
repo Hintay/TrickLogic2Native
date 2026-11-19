@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=TrickLogic2
+GenericName=Mystery novel game
+Comment=Trick x Logic Season 2, played from your own disc
+Exec=tricklogic2
+Icon=works.lm.TrickLogic2Native
+Terminal=false
+Categories=Game;AdventureGame;
+Keywords=PSP;Trick x Logic;mystery;

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>works.lm.TrickLogic2Native</id>
+  <name>TrickLogic2</name>
+  <summary>Trick x Logic Season 2, played from your own disc</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="works.lm">
+    <name>Hintay</name>
+  </developer>
+  <description>
+    <p>
+      A native port of the PSP mystery novel game Trick x Logic Season 2. It contains
+      none of the game's data: setup prepares the game from an image of your own disc,
+      the Japanese release or its Simplified Chinese translation, as an .iso
+      or a CHD.
+    </p>
+    <p>
+      Season 1's four cases can be added from an image of your Season 1 disc, and
+      join Season 2's shelf.
+    </p>
+  </description>
+  <launchable type="desktop-id">works.lm.TrickLogic2Native.desktop</launchable>
+  <url type="homepage">https://github.com/Hintay/TrickLogic2Native</url>
+  <url type="bugtracker">https://github.com/Hintay/TrickLogic2Native/issues</url>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="@VERSION@" date="@DATE@"/>
+  </releases>
+</component>
