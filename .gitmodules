@@ -1,3 +1,4 @@
 [submodule "portablekit"]
 	path = portablekit
-	url = https://github.com/TeamGDB/PortableKit.git
+	url = https://github.com/Hintay/PortableKit.git
+	branch = tricklogic2
