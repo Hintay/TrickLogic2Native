@@ -5,7 +5,13 @@
 namespace tricklogic2 {
 
 // Builds Season 1's cases for Season 2 from the player's two discs, whatever
-// edition (the Japanese release, a translation) each one is:
+// edition (the Japanese release, a translation) each one is.
+//
+// The Japanese releases of both seasons have the same three fonts, so when
+// the two discs' fonts match, Season 1's case archives are copied unchanged
+// to where Season 2 looks for downloaded episodes,
+// ms0:/PSP/GAME/NPJG00025/<case>.edat. Otherwise one of them is an edition
+// that redrew its fonts, and:
 //
 //  - Season 2's three fonts (in data/common.bin) gain every glyph of Season
 //    1's, at codes Season 2 leaves empty: the i-th Season 1 code becomes the

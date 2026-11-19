@@ -38,8 +38,11 @@ and `lib/`) to the Deck, then set the game up there:
 ## Season 1 and the disc overlay
 
 `--add-disc` writes Season 1's cases where Season 2 looks for downloaded episodes,
-`<data>/ms0/PSP/GAME/NPJG00025/<case>.edat`, and a patch of Season 2's `common.bin`
-that adds Season 1's glyphs to its fonts (`host/season1_import.hpp` has the details).
+`<data>/ms0/PSP/GAME/NPJG00025/<case>.edat`. The Japanese releases of the two seasons
+share their fonts, so with both of them the cases are copied as they are. When either
+disc is a translation that redrew its fonts, the cases' text is moved to new codes and
+a patch of Season 2's `common.bin` adds Season 1's glyphs at those codes
+(`host/season1_import.hpp` has the details).
 
 The patch goes to PortableKit's disc overlay rather than a rebuilt disc image:
 `<data>/disc_overlay/PSP_GAME/USRDIR/data/common.bin.pkpatch` changes byte ranges of

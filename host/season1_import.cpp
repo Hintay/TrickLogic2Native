@@ -32,6 +32,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstring>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -573,11 +574,33 @@ void build_season1(const portablekit::AddOnBuild &build) {
     const auto entries2 = pack_entries(index2, pack_data_start(index2));
     const auto entries1 = pack_entries(index1, pack_data_start(index1));
     std::vector<Font> fonts2, fonts1;
+    bool same_fonts = true;
     for (const FontEntry &font : kFonts) {
-        fonts2.push_back(read_font(read_pack_entry(build.game_disc, common2, pack_entry(entries2, font.name, s2)),
-                                   std::string(s2) + "'s " + font.name));
-        fonts1.push_back(read_font(read_pack_entry(build.add_on, common1, pack_entry(entries1, font.name, s1)),
-                                   std::string(s1) + "'s " + font.name));
+        const Bytes data2 = read_pack_entry(build.game_disc, common2, pack_entry(entries2, font.name, s2));
+        const Bytes data1 = read_pack_entry(build.add_on, common1, pack_entry(entries1, font.name, s1));
+        same_fonts = same_fonts && data1 == data2;
+        fonts2.push_back(read_font(data2, std::string(s2) + "'s " + font.name));
+        fonts1.push_back(read_font(data1, std::string(s1) + "'s " + font.name));
+    }
+    const std::filesystem::path patch_path = build.disc_overlay / (std::string(kCommon) + portablekit::disc_patch::kSuffix);
+
+    // The Japanese releases of both seasons have the same fonts, so Season 2
+    // draws Season 1's text as it is: the cases are copied unchanged, and a
+    // patch left from an earlier pairing of discs is removed. Only an edition
+    // that redrew its fonts (a translation) needs the merge below.
+    if (same_fonts) {
+        std::error_code ec;
+        std::filesystem::remove(patch_path, ec);
+        std::size_t done = 0u;
+        for (const char *name : kCases) {
+            build.progress("Copying the cases", done++, std::size(kCases));
+            const DiscFile file = find_file(build.add_on, std::string("PSP_GAME/USRDIR/data/") + name + ".bin", s1);
+            write_file(build.memory_stick / kDownloadFolder / (std::string(name) + ".edat"),
+                       read_range(build.add_on, file.start, file.size));
+        }
+        build.progress("Copying the cases", done, std::size(kCases));
+        std::cout << "[season1] both discs share their fonts; " << std::size(kCases) << " cases copied\n";
+        return;
     }
 
     // Season 1's codes, each to a code Season 2 leaves empty.
@@ -642,7 +665,7 @@ void build_season1(const portablekit::AddOnBuild &build) {
             build.progress("Checking Season 2's common.bin", at + got, common2.size);
             return got;
         });
-    portablekit::disc_patch::write(build.disc_overlay / (std::string(kCommon) + portablekit::disc_patch::kSuffix), patch);
+    portablekit::disc_patch::write(patch_path, patch);
 
     // The cases.
     std::size_t unknown = 0u;

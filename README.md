@@ -22,8 +22,8 @@ is read as it is, with nothing unpacked to disk.
 
 The two Season 2 editions share one build: the translation changed only text and
 art, not the game's code, so the code recompiled from one runs the other. Season 1's
-cases are built at setup from the player's own Season 1 disc and drawn in Season 1's
-own font.
+cases are built at setup from the player's own Season 1 disc; a translated disc's
+text keeps that disc's own font.
 
 ## Building
 
